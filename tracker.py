@@ -11,6 +11,8 @@ class TemperatureTracker(object):
 
     def __init__(self):
         self.temperatures = []
+        self.max_temperature = None
+        self.min_temperature = None
 
     def insert(self, temperature: int) -> None:
         """Insert a new temperature on the tracker.
@@ -20,6 +22,20 @@ class TemperatureTracker(object):
         self.validate_temperature(temperature)
         # Record the temperature
         self.temperatures.append(temperature)
+        # Set maximum temperature
+        self.set_max(temperature)
+        # Set minimum temperature
+        self.set_min(temperature)
+
+    def set_max(self, temperature):
+        if not self.max_temperature or temperature > self.max_temperature:
+            self.max_temperature = temperature
+        return self.max_temperature
+
+    def set_min(self, temperature):
+        if not self.min_temperature or temperature < self.min_temperature:
+            self.min_temperature = temperature
+        return self.min_temperature
 
     def validate_temperature(self, temperature: int) -> None:
         """Check if the temperature is a valid value."""
@@ -29,11 +45,11 @@ class TemperatureTracker(object):
 
     def get_max(self):
         """Return the maximum temperature tracked."""
-        return max(self.temperatures)
+        return self.max_temperature
 
     def get_min(self):
         """Return the minimum temperature tracked."""
-        return min(self.temperatures)
+        return self.min_temperature
 
     def get_mean(self) -> float:
         """Return the mean temperature tracked."""
