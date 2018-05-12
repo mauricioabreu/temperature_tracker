@@ -2,6 +2,8 @@
 
 Simple temperature tracker
 
+Read the full explanation (and motivation) here: https://www.maugzoide.com/designing-a-simple-temperature-tracker.html
+
 Requirements:
 
 * Python 3.6+
